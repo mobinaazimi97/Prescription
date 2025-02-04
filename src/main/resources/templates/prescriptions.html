@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescription</title>
+    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/prescriptions.css}">
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div id="title">
+        <h1>Prescription Page</h1>
+    </div>
+    <div id="prescription-form">
+        <form th:action="@{/prescriptions}" th:method="post" th:object="${prescription}">
+            <label for="description">Description</label><input type="text" id="description" name="description" th:field="*{description}" placeholder="Description" required>
+            <br>
+            <input class="btn btn-success" type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <div id="prescription-table">
+        <h2 th:if="${prescriptions.isEmpty()}">No Content</h2>
+        <table class="table table-hover table-primary" th:unless="${prescriptions.isEmpty()}">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="prescription : ${prescriptions}">
+                <td th:text="${prescription.id}"></td>
+                <td th:text="${prescription.description}"></td>
+
+                <td>
+                    <button class="btn btn-warning" th:onclick="showEditPage([[${prescription.id}]])">Edit <i
+                            class="fa fa-edit"></i></button>
+
+                    <button class="btn btn-danger" th:onclick="deletePrescription([[${prescription.id}]])">Delete <i
+                            class="fa fa-remove"></i></button>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/fontawesome.js}"></script>
+<script th:src="@{/assets/js/prescriptions.js}"></script>
+
+</body>
+</html>

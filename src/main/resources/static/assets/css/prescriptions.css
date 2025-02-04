@@ -1,0 +1,26 @@
+#container-fluid, #prescription-table, #prescription-form, #title{
+    margin-top:50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: darkred;
+}
+#prescription-table table, #prescription-form form{
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+

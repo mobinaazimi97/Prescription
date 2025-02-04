@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div>
+  <span class="val-err" th:if="${#fields.hasErrors()}" th:each="err : ${#fields.allErrors()}" ></span>
+
+</div>
+
+<form id="prescriptionForm" th:object="${prescription}" th:action="@{/newPrescriptions}" th:method="POST">
+  <div class="modal-body">
+    <input type="hidden" id="prescriptionId">
+    <div class="mb-3">
+      <label th:text="${prescription.description}"></label>
+      <input type="text" class="form-control" id="description" name="description" placeholder="description">
+      <span class="val-err" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" id="savePrescription" value="save">
+  </button>
+
+</form>
+<h1 th:if="${#lists.isEmpty(prescriptions)}">No Content!</h1>
+
+<table th:if="${not #lists.isEmpty(prescriptions)}">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>description</th>
+    <th>Operation</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="prescription:${prescriptions}">
+    <td th:text="${prescription.id}"></td>
+    <td th:text="${prescription.description}"></td>
+    <td>
+      <button>Edit</button>
+      <button>Remove</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<!--<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>-->
+<button onclick="fetchData()">Click</button>
+
+
+<script th:src="@{js/prescriptionFetchScript.js}"></script>
+
+<script>
+
+
+  // document.getElementById("saveCustomer").addEventListener("submit", function(event) {
+  //     event.preventDefault();
+  // }
+
+  // function changeName(){
+  //     const nameField = document.getElementById('firstName');
+  //     nameField.value = "changed";
+  //     nameField.classList.add ("is-valid");
+  //     nameField.focus();
+  //     nameField.style.color = "green";
+  // }
+</script>
+</body>
+</html>

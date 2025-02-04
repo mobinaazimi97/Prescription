@@ -1,0 +1,27 @@
+#container-fluid, #patient-table, #patient-form, #title{
+    margin-top:50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: rebeccapurple;
+}
+#patient-table table, #patient-form form{
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients</title>
+    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/patients.css}">
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div id="title">
+        <h1>Patient Page</h1>
+    </div>
+    <div id="patient-form">
+        <form th:action="@{/patients}" th:method="post" th:object="${patient}">
+            <label for="firstName">firstName</label><input type="text" id="firstName" name="firstName" th:field="*{firstName}" placeholder="firstName" required>
+            <label for="lastName">lastName</label><input type="text" id="lastName" name="lastName" th:field="*{lastName}" placeholder="lastName" required>
+            <label for="sickness">sickness</label><input type="text" id="sickness" name="quantity" th:field="*{sickness}" placeholder="sickness" required>
+            <label for="prescription">prescription</label><input type="text" id="prescription" name="prescription" th:field="*{prescriptionList}" placeholder="prescription" required>
+            <br>
+            <input class="btn btn-success" type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <div id="patient-table">
+        <h2 th:if="${patients.isEmpty()}">No Content</h2>
+        <table class="table table-hover table-primary" th:unless="${patients.isEmpty()}">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Sickness</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.firstName}"></td>
+                <td th:text="${patient.lastName}"></td>
+                <td th:text="${patient.sickness}"></td>
+                <td>
+                    <button class="btn btn-warning" th:onclick="showEditPage([[${patient.id}]])">Edit <i
+                            class="fa fa-edit"></i></button>
+
+                    <button class="btn btn-info" th:onclick="findPrescription([[${patient.prescriptionList}]])">GetPrescription <i
+                            class="fa fa-info"></i></button>
+
+                    <button class="btn btn-danger" th:onclick="deletePatientById([[${patient.id}]])">Delete <i
+                            class="fa fa-remove"></i></button>
+
+                    <button class="btn btn-danger" th:onclick="deletePatientByLastName([[${patient.lastName}]])">Delete Object <i
+                            class="fa fa-remove"></i></button>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/fontawesome.js}"></script>
+<script th:src="@{/assets/js/patients.js}"></script>
+
+</body>
+</html>

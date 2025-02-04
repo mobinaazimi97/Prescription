@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescription</title>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/prescriptions.min.css}">
+</head>
+<body>
+
+<h1>Prescription</h1>
+
+<br><br>
+
+<form th:object="${prescription}" th:action="@{/prescriptions}" th:method="post">
+    <input type="text" id="id" name="id" th:field="*{id}" placeholder="Id" hidden="hidden">
+    <input type="text" id="description" name="description" th:field="*{description}" placeholder="Description" required>
+    <input type="submit" value="Submit">
+</form>
+
+<!--<button onclick="editProduct()" value="Update">Update</button>-->
+
+
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/fontawesome.js}"></script>
+<script th:src="@{/assets/js/prescriptions.js}"></script>
+
+</body>
+</html>
