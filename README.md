@@ -1,3 +1,5 @@
+this is SpringPracticeSample number 04 :
+
 there are 2models of get and post method controller :
 
 Json And View(Rest And Thymeleaf)
